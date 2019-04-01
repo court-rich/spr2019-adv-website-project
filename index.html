@@ -33,11 +33,11 @@
         var yourVlSpec = {
             $schema: 'https://vega.github.io/schema/vega-lite/v2.0.json',
             description: 'A simple bar chart with embedded data.',
-            data: { url: './output.json'},
-            mark: 'line',
+            data: { url: './unstacked_output.json'},
+            mark: 'point',
             encoding: {
                 x: {field: 'DATE', type: 'temporal'},
-                y: {field: 'ALBANY PARK', type: 'quantitative'}
+                y: {field: 'CIRCULATION', type: 'quantitative', aggregate:"sum"}
             }
         };
         vegaEmbed('#vis', yourVlSpec);
