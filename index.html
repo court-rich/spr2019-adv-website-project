@@ -14,9 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 
     <link rel="stylesheet/less" type="text/css" href="styles.less" />
 
@@ -32,67 +32,65 @@
         var yourVlSpec = {
             $schema: 'https://vega.github.io/schema/vega-lite/v3.0.json',
             description: 'A simple bar chart with embedded data.',
-            data: {
-    url: 'https://raw.githubusercontent.com/court-rich/court-rich.github.io/master/adv-dig-viz/data/book-of-Negroes-1783.csv'
-  },
-  vconcat: [
-    {
-      selection: {
-        selected_points: {
-          type: "interval"
-        }
-      },
-      width: 500,
-      height: 150,
-      mark: 'point',
-      encoding: {
-        x: {
-          field: 'ARage',
-          type: 'quantitative',
-          axis: {
-            title: 'Age'
-          }
-        },
-        y: {
-          field: 'ARgender',
-          title: 'Gender',
-          type: 'nominal'
-        },
-        color: {
-          condition: {
-            selection: 'selected_points',
-            type: 'nominal'
-          },
-          value: 'grey'
-        }
-      }
-    },
-    {
-      width: 500,
-      mark: 'bar',
-      transform: [
-        {
-          filter: {
-            selection: 'selected_points'
-          }
-        }
-      ],
-      encoding: {
-        x: {
-          field: 'ARage',
-          type: 'quantitative',
-          axis: {
-            title: 'Age'
-          }
-        },
-        y: {
-          field: 'ARbound',
-          title: 'Destination',
-          type: 'nominal'
-        }
-      }
-    }
-  ]
+            data: {url: '_Book_of_Negroes___1783.csv'},
+            vconcat: [
+                {
+                selection: {
+                    selected_points: {
+                    type: "interval"
+                    }
+                },
+                width: 500,
+                height: 150,
+                mark: 'point',
+                encoding: {
+                    x: {
+                    field: 'ARage',
+                    type: 'quantitative',
+                    axis: {
+                        title: 'Age'
+                    }
+                    },
+                    y: {
+                    field: 'ARgender',
+                    title: 'Gender',
+                    type: 'nominal'
+                    },
+                    color: {
+                    condition: {
+                        selection: 'selected_points',
+                        type: 'nominal'
+                    },
+                    value: 'grey'
+                    }
+                }
+                },
+                {
+                width: 500,
+                mark: 'bar',
+                transform: [
+                    {
+                    filter: {
+                        selection: 'selected_points'
+                    }
+                    }
+                ],
+                encoding: {
+                    x: {
+                    field: 'ARage',
+                    type: 'quantitative',
+                    axis: {
+                        title: 'Age'
+                    }
+                    },
+                    y: {
+                    field: 'ARbound',
+                    title: 'Destination',
+                    type: 'nominal'
+                    }
+                }
+                }
+            ]
         };
         vegaEmbed('#vis', yourVlSpec);
     </script>
