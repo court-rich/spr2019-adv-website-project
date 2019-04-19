@@ -83,7 +83,7 @@
                         "zone_choice": {
                             "fields": ["base_type"],
                             "type": "single",
-                            "bind": { "input": "select", "options": ["All", "Commercial", "Residential", "Industrial", "In-Town", "Park"] }
+                            "bind": { "input": "select", "options": ["Commercial", "Residential", "Industrial", "In-Town", "Park"] }
                         }
                     },
                     "mark": "geoshape",
@@ -113,6 +113,16 @@
                             "field": "properties.SHAPESTArea",
                             "aggregate": "sum",
                             "type": "quantitative"
+                        },
+                        "scale": {
+                            "domain": [
+                                "All",
+                                "Commercial",
+                                'Residential',
+                                "Industrial",
+                                "In-Town",
+                                "Park"
+                            ]
                         }
                     }
                 }
