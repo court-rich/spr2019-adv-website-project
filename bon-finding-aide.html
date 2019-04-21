@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Week 10 Map</title>
+    <title>Final: Finding Aide</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.min.css">
@@ -25,52 +25,47 @@
 
 <body style="overflow-y: scroll;">
 
-    <h1>Week 10 Map - Geoshapes</h1>
+    <h1>Finding Aide</h1>
 
     <div id="vis"></div>
 
     <script type="text/javascript">
         var yourVlSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
-            "description": "Mapping; geo json example",
+            "description": "Nova Scotia Mapping example",
             "data": {
-                "name": "champaign_zoning", "url": "champaign.topojson",
+                "name": "champaign_zoning", "url": "municipality-village-boundaries.topojson",
                 "format": {
                     "type": "topojson",
-                    "feature": "Zoning"
+                    "feature": "Municipality and Village Boundaries"
                 }
             },
             "transform": [
                 {
-                    "lookup": "properties.zoning_description",
+                    "lookup": "properties.county",
                     "from": {
                         "fields": ["base_type"],
                         "data":
                         {
                             "values": [
-                                { "code": "CB1", "base_type": "Commercial" },
-                                { "code": "CB2", "base_type": "Commercial" },
-                                { "code": "CB3", "base_type": "Commercial" },
-                                { "code": "CG", "base_type": "Commercial" },
-                                { "code": "CI", "base_type": "Commercial" },
-                                { "code": "CN", "base_type": "Commercial" },
-                                { "code": "CO", "base_type": "Commercial" },
-                                { "code": "MF1", "base_type": "Residential" },
-                                { "code": "MF2", "base_type": "Residential" },
-                                { "code": "MF3", "base_type": "Residential" },
-                                { "code": "MFUniv", "base_type": "Residential" },
-                                { "code": "SF1", "base_type": "Residential" },
-                                { "code": "SF2", "base_type": "Residential" },
-                                { "code": "I1", "base_type": "Industrial" },
-                                { "code": "I2", "base_type": "Industrial" },
-                                { "code": "IT-MF", "base_type": "In-Town" },
-                                { "code": "IT-MX", "base_type": "In-Town" },
-                                { "code": "IT-MC", "base_type": "In-Town" },
-                                { "code": "IT-SF1", "base_type": "In-Town" },
-                                { "code": "IT-SF2", "base_type": "In-Town" },
-                                { "code": "IBP", "base_type": "Park" },
-                                { "code": "IOP", "base_type": "Park" },
-                                { "code": "MHP", "base_type": "Park" }
+                                { "code": "Annapolis", "base_type": "Commercial" },
+                                { "code": "Antigonish", "base_type": "Commercial" },
+                                { "code": "Cape Breton", "base_type": "Commercial" },
+                                { "code": "Colchester", "base_type": "Commercial" },
+                                { "code": "Cumberland", "base_type": "Commercial" },
+                                { "code": "Digby", "base_type": "Commercial" },
+                                { "code": "Guysborough", "base_type": "Commercial" },
+                                { "code": "Halifax", "base_type": "Residential" },
+                                { "code": "Hants", "base_type": "Residential" },
+                                { "code": "Inverness", "base_type": "Residential" },
+                                { "code": "Kings", "base_type": "Residential" },
+                                { "code": "Lunenburg", "base_type": "Residential" },
+                                { "code": "Pictou", "base_type": "Residential" },
+                                { "code": "Queens", "base_type": "Industrial" },
+                                { "code": "Richmond", "base_type": "Industrial" },
+                                { "code": "Shelburne", "base_type": "In-Town" },
+                                { "code": "Victoria", "base_type": "In-Town" },
+                                { "code": "Yarmouth", "base_type": "In-Town" }
                             ]
                         },
                         "key": "code"
@@ -83,7 +78,7 @@
                         "zone_choice": {
                             "fields": ["base_type"],
                             "type": "single",
-                            "bind": { "input": "select", "options": ["Commercial", "Residential", "Industrial", "In-Town", "Park"] }
+                            "bind": { "input": "select", "options": ["Commercial", "Residential", "Industrial", "In-Town"] }
                         }
                     },
                     "mark": "geoshape",
@@ -106,11 +101,11 @@
                     ],
                     "encoding": {
                         "y": {
-                            "field": "properties.zoning_code",
+                            "field": "properties.cgndb_key",
                             "type": "nominal"
                         },
                         "x": {
-                            "field": "properties.SHAPESTArea",
+                            "field": "properties.shape_area",
                             "aggregate": "sum",
                             "type": "quantitative"
                         },
@@ -120,8 +115,7 @@
                                 "Commercial",
                                 'Residential',
                                 "Industrial",
-                                "In-Town",
-                                "Park"
+                                "In-Town"
                             ]
                         }
                     }
