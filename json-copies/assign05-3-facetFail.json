@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/court-rich/court-rich.github.io/master/adv-dig-viz/data/book-of-Negroes-1783.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "oneOf": [
+          "m",
+          "f",
+          "c m",
+          "c f",
+          "c"
+        ],
+        "field": "ARgender"
+      }
+    },
+    {
+      "filter": {
+        "oneOf": [
+          "St. Johns",
+          "Port Roseway",
+          "Annapollis Royal"
+        ],
+        "field": "ARbound"
+      }
+    }
+  ],
+  "facet": {
+    "row": {
+      "field": "ARgender",
+      "type": "nominal"
+    },
+    "column": {
+      "field": "ARbound",
+      "type": "nominal"
+    }
+  },
+  "spec": {
+    "mark": "bar",
+    "selection": {
+      "grid": {
+        "type": "interval",
+        "bind": "scales"
+      }
+    },
+    "encoding": {
+      "color": {
+        "field": "ARgender",
+        "title": "Gender",
+        "type": "nominal",
+        "scale": {
+            "domain": [
+              "m",
+              "c m",
+              "f",
+              "c f",
+              "c"
+            ],
+            "range": [
+              "#407edc",
+              "#a4c8ff",
+              "#d24483",
+              "#f2abcb",
+              "gray"
+            ]
+          }
+      },
+      "x": {
+        "field": "ARage",
+        "type": "quantitative",
+        "bin": true,
+        "axis": {
+          "title": "Age"
+        }
+      },
+      "y": {
+        "aggregate": "sum",
+        "type": "quantitative",
+        "field": "ARgender"
+      }
+    }
+  }
+}

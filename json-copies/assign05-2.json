@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/court-rich/court-rich.github.io/master/adv-dig-viz/data/book-of-Negroes-1783.csv"
+  },
+  "vconcat": [
+    {
+      "selection": {
+        "selected_points": {
+          "type": "interval"
+        }
+      },
+      "width": 500,
+      "height": 150,
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "y": {
+          "field": "ARgender",
+          "title": "Gender",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "selection": "selected_points",
+            "type": "nominal"
+          },
+          "value": "grey"
+        }
+      }
+    },
+    {
+      "width": 500,
+      "mark": "bar",
+      "transform": [
+        {
+          "filter": {
+            "selection": "selected_points"
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "y": {
+          "field": "ARbound",
+          "title": "Destination",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

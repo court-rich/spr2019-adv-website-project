@@ -1,0 +1,247 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/court-rich/court-rich.github.io/master/adv-dig-viz/data/book-of-Negroes-1783.csv"
+  },
+  "vconcat": [
+    {
+      "mark": "point",
+      "width": 500,
+      "height": 300,
+      "encoding": {
+        "y": {
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "x": {
+          "field": "ARbound",
+          "type": "nominal",
+          "axis": {
+            "title": "Destination"
+          }
+        },
+        "size": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "legend": {
+            "offset": -90
+          }
+        }
+      }
+    },
+    {
+      "mark": "rect",
+      "width": 500,
+      "height": 200,
+      "encoding": {
+        "x": {
+          "field": "ARbound",
+          "title": "Destination",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "ARgender",
+          "title": "Gender",
+          "type": "nominal"
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "oneOf": [
+              "St. Johns",
+              "Port Roseway",
+              "Annapollis Royal"
+            ],
+            "field": "ARbound"
+          }
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "stack": "normalize"
+        },
+        "x": {
+          "axis": {
+            "title": "Age"
+          },
+          "field": "ARage",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "ARbound",
+          "title": "Destination",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "St. Johns",
+              "Port Roseway",
+              "Annapollis Royal"
+            ],
+            "range": [
+              "red",
+              "orange",
+              "blue"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "point": true
+      },
+      "encoding": {
+        "x": {
+          "bin": true,
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "ARgender",
+          "title": "Gender",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "m",
+              "c m",
+              "f",
+              "c f",
+              "c"
+            ],
+            "range": [
+              "#407edc",
+              "#a4c8ff",
+              "#d24483",
+              "#f2abcb",
+              "gray"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "stack": "normalize"
+        },
+        "x": {
+          "axis": {
+            "title": "Age"
+          },
+          "field": "ARage",
+          "bin": true,
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "ARgender",
+          "title": "Gender",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "m",
+              "c m",
+              "f",
+              "c f",
+              "c"
+            ],
+            "range": [
+              "#407edc",
+              "#a4c8ff",
+              "#d24483",
+              "#f2abcb",
+              "gray"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "text",
+      "transform": [
+        {
+          "calculate": "datum.ARgender[0]",
+          "as": "GenderInitial"
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "ARgender",
+          "title": "Gender",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "m",
+              "c m",
+              "f",
+              "c f",
+              "c"
+            ],
+            "range": [
+              "#407edc",
+              "#a4c8ff",
+              "#d24483",
+              "#f2abcb",
+              "gray"
+            ]
+          }
+        },
+        "text": {
+          "field": "GenderInitial",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "bin": true,
+          "field": "ARage",
+          "type": "quantitative",
+          "axis": {
+            "title": "Age"
+          }
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}
