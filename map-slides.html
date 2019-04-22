@@ -34,6 +34,116 @@
             <section>
                 <h1>This is a section.</h1>
             </section>
+
+            <section>
+                <div id="vis">
+                        <script type="text/javascript">
+                            var yourVlSpec = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v3.0.json",
+                                "description": "Nova Scotia Mapping example",
+                                "data": {
+                                    "name": "champaign_zoning", "url": "municipality-village-boundaries.topojson",
+                                    "format": {
+                                        "type": "topojson",
+                                        "feature": "Municipality and Village Boundaries"
+                                    }
+                                },
+                                "transform": [
+                                    {
+                                        "lookup": "properties.county",
+                                        "from": {
+                                            "fields": ["base_type"],
+                                            "data":
+                                            {
+                                                "values": [
+                                                    { "code": "Annapolis", "base_type": "Annapolis" },
+                                                    { "code": "Antigonish", "base_type": "None" },
+                                                    { "code": "Cape Breton", "base_type": "None" },
+                                                    { "code": "Colchester", "base_type": "None" },
+                                                    { "code": "Cumberland", "base_type": "Cumberland" },
+                                                    { "code": "Digby", "base_type": "None" },
+                                                    { "code": "Guysborough", "base_type": "None" },
+                                                    { "code": "Halifax", "base_type": "Halifax" },
+                                                    { "code": "Hants", "base_type": "None" },
+                                                    { "code": "Inverness", "base_type": "None" },
+                                                    { "code": "Kings", "base_type": "None" },
+                                                    { "code": "Lunenburg", "base_type": "None" },
+                                                    { "code": "Pictou", "base_type": "None" },
+                                                    { "code": "Queens", "base_type": "None" },
+                                                    { "code": "Richmond", "base_type": "None" },
+                                                    { "code": "Shelburne", "base_type": "Shelburne" },
+                                                    { "code": "Victoria", "base_type": "None" },
+                                                    { "code": "Yarmouth", "base_type": "None" }
+                                                ]
+                                            },
+                                            "key": "code"
+                                        }
+                                    }
+                                ],
+                                "hconcat": [
+                                    {
+                                        "selection": {
+                                            "destination": {
+                                                "fields": ["base_type"],
+                                                "type": "single",
+                                                "bind": { "input": "select", "options": ["Annapolis", "Cumberland", "Halifax", "Shelburne", "None"] }
+                                            }
+                                        },
+                                        "mark": "geoshape",
+                                        "projection": {
+                                            "type": "albersUsa"
+                                        },
+                                        "encoding": {
+                                            "color": { "field": "base_type", "type": "nominal" }
+                                        },
+                                        "width": 600, "height": 400,
+                                        "autosize": {
+                                            "type": "fit",
+                                            "contains": "padding"
+                                        }
+                                    },
+                                    {
+                                        "mark": "bar",
+                                        "transform": [
+                                            {
+                                                "filter": { "selection": "destination" },
+                                                "lookup": "ARbound",
+                                                "from": {
+                                                    "data": { "url": "_Book_of_Negroes___1783.csv" }
+                                                },
+                                                "key": "ARbound",
+                                                "fields": ["ARname", "ARage", "ARpage"]
+                                            }
+                                        ],
+                                        "encoding": {
+                                            "y": {
+                                                "aggregate": "count",
+                                                "type": "quantitative"
+                                            },
+                                            "x": {
+                                                "bin": true,
+                                                "field": "ARage",
+                                                "type": "quantitative"
+                                            },
+                                            "scale": {
+                                                "domain": [
+                                                    "Annapolis",
+                                                    "Cumberland",
+                                                    "Halifax",
+                                                    "Shelburne",
+                                                    "None"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                    
+                            };
+                            vegaEmbed('#vis', yourVlSpec);
+                        </script>
+                </div>
+            </section>
+
         </div>
     </div>
 
