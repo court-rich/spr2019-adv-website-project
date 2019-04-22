@@ -48,24 +48,24 @@
                         "data":
                         {
                             "values": [
-                                { "code": "Annapolis", "base_type": "Commercial" },
-                                { "code": "Antigonish", "base_type": "Commercial" },
-                                { "code": "Cape Breton", "base_type": "Commercial" },
-                                { "code": "Colchester", "base_type": "Commercial" },
-                                { "code": "Cumberland", "base_type": "Commercial" },
-                                { "code": "Digby", "base_type": "Commercial" },
-                                { "code": "Guysborough", "base_type": "Commercial" },
-                                { "code": "Halifax", "base_type": "Residential" },
-                                { "code": "Hants", "base_type": "Residential" },
-                                { "code": "Inverness", "base_type": "Residential" },
-                                { "code": "Kings", "base_type": "Residential" },
-                                { "code": "Lunenburg", "base_type": "Residential" },
-                                { "code": "Pictou", "base_type": "Residential" },
-                                { "code": "Queens", "base_type": "Industrial" },
-                                { "code": "Richmond", "base_type": "Industrial" },
-                                { "code": "Shelburne", "base_type": "In-Town" },
-                                { "code": "Victoria", "base_type": "In-Town" },
-                                { "code": "Yarmouth", "base_type": "In-Town" }
+                                { "code": "Annapolis", "base_type": "Annapolis" },
+                                { "code": "Antigonish", "base_type": "None" },
+                                { "code": "Cape Breton", "base_type": "None" },
+                                { "code": "Colchester", "base_type": "None" },
+                                { "code": "Cumberland", "base_type": "Cumberland" },
+                                { "code": "Digby", "base_type": "None" },
+                                { "code": "Guysborough", "base_type": "None" },
+                                { "code": "Halifax", "base_type": "Halifax" },
+                                { "code": "Hants", "base_type": "None" },
+                                { "code": "Inverness", "base_type": "None" },
+                                { "code": "Kings", "base_type": "None" },
+                                { "code": "Lunenburg", "base_type": "None" },
+                                { "code": "Pictou", "base_type": "None" },
+                                { "code": "Queens", "base_type": "None" },
+                                { "code": "Richmond", "base_type": "None" },
+                                { "code": "Shelburne", "base_type": "Shelburne" },
+                                { "code": "Victoria", "base_type": "None" },
+                                { "code": "Yarmouth", "base_type": "None" }
                             ]
                         },
                         "key": "code"
@@ -75,10 +75,10 @@
             "hconcat": [
                 {
                     "selection": {
-                        "zone_choice": {
+                        "destination": {
                             "fields": ["base_type"],
                             "type": "single",
-                            "bind": { "input": "select", "options": ["Commercial", "Residential", "Industrial", "In-Town"] }
+                            "bind": { "input": "select", "options": ["Annapolis", "Cumberland", "Halifax", "Shelburne", "None"] }
                         }
                     },
                     "mark": "geoshape",
@@ -97,7 +97,7 @@
                 {
                     "mark": "bar",
                     "transform": [
-                        { "filter": { "selection": "zone_choice" } }
+                        { "filter": { "selection": "destination" } }
                     ],
                     "encoding": {
                         "y": {
@@ -111,11 +111,11 @@
                         },
                         "scale": {
                             "domain": [
-                                "All",
-                                "Commercial",
-                                'Residential',
-                                "Industrial",
-                                "In-Town"
+                                "Annapolis",
+                                "Cumberland",
+                                "Halifax",
+                                "Shelburne",
+                                "None"
                             ]
                         }
                     }
