@@ -97,16 +97,24 @@
                 {
                     "mark": "bar",
                     "transform": [
-                        { "filter": { "selection": "destination" } }
+                        {
+                            "filter": { "selection": "destination" },
+                            "lookup": "id",
+                            "from": {
+                                "data": { "url": "_Book_of_Negroes___1783.csv" }
+                            },
+                            "key": "id",
+                            "fields": ["ARname", "ARage", "ARpage"]
+                        }
                     ],
                     "encoding": {
                         "y": {
-                            "field": "properties.county",
-                            "type": "nominal"
+                            "aggregate": "count",
+                            "type": "quantitative"
                         },
                         "x": {
-                            "field": "properties.shape_area",
-                            "aggregate": "sum",
+                            "bin": true,
+                            "field": "ARage",
                             "type": "quantitative"
                         },
                         "scale": {
