@@ -25,9 +25,14 @@
 
 <body style="overflow-y: scroll;">
 
-    <h1>Finding Aide</h1>
+    <h1>The Book of Negroes</h1>
+    <h2>Finding Aide</h2>
+
+    <p><em>*in testing only - visualization is not yet accurate*</em></p>
 
     <div id="vis"></div>
+
+    <p>Contains information licensed under the <a href="https://novascotia.ca/opendata/licence.asp" target="_blank">Open Government Licence – Nova Scotia</a>.</p>
 
     <script type="text/javascript">
         var yourVlSpec = {
@@ -99,11 +104,11 @@
                     "transform": [
                         {
                             "filter": { "selection": "destination" },
-                            "lookup": "id",
+                            "lookup": "ARbound",
                             "from": {
                                 "data": { "url": "_Book_of_Negroes___1783.csv" }
                             },
-                            "key": "id",
+                            "key": "ARbound",
                             "fields": ["ARname", "ARage", "ARpage"]
                         }
                     ],
